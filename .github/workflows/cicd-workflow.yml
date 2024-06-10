@@ -15,7 +15,7 @@ jobs:
               run: docker build -t sivakrishna1023/backend_server .
             - name: publish image to docker hub
               run: docker push sivakrishna1023/backend_server:latest 
-    # deploy:
+    # deploy: 
     #     needs: build
     #     runs-on: []
 
