@@ -17,7 +17,7 @@ jobs:
               run: docker push sivakrishna1096/backend_server:latest 
     deploy: 
         needs: build 
-        runs-on: [self-hosted] 
+        runs-on: self-hosted  
         steps:
             - name: pull Image form docker hub
               run: docker pull sivakrishna1096/backend_server:latest
