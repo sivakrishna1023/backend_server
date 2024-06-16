@@ -18,4 +18,11 @@ jobs:
     # deploy: 
     #     needs: build
     #     runs-on: []
+    #     steps:
+    #         - name: pull Image form docker hub
+    #           run: docker pull sivakrishna1096/backend_server:latest
+    #         - name: Delete old container
+    #           run: docker rm -f backend_server-container
+    #         - name: Run docker container
+    #           run: docker run -d -p 3000:3000 --name backend_server-container sivakrishna1096/backend_server
 

@@ -90,7 +90,7 @@ io.on("connection",(socket)=>{
 //     res.send(singlechat);
 // })
 
-// connectDB();
+connectDB();
 app.get("/",(req,res)=>{
     res.send("working server");
 })
