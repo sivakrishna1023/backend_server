@@ -91,7 +91,7 @@ io.on("connection",(socket)=>{
 // })
 
 connectDB();
-app.get("/",(req,res)=>{
-    res.send("working server");
+app.get("/",(req,res)=>{ 
+    res.send("working server"); 
 })
 server.listen(process.env.PORT,console.log(`listening in port ${process.env.PORT}`))
