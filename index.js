@@ -21,26 +21,30 @@ app.use(express.json());
 // app.use(errorHandler)
 
 
-const corsOptions = {
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:4173",
-      "https://socket-io-sooty-iota.vercel.app"
-    ]
-  };
+// const corsOptions = {
+//     origin: [
+//       "http://localhost:5173",
+//       "http://localhost:4173",
+//       "https://socket-io-sooty-iota.vercel.app"
+//     ]
+//   };
   
-  // Apply CORS middleware to Express
-  app.use(cors(corsOptions));
+//   // Apply CORS middleware to Express
+//   app.use(cors(corsOptions));
   
   const server = createServer(app);
   
   // Apply CORS options to socket.io
   const io = new Server(server, {
     cors: {
-      origin: corsOptions.origin,
-      methods: ["GET", "POST"],
-      credentials: true // Include if you need to support cookies or HTTP authentication
-    }
+        origin: [
+          "http://localhost:5173",
+          "http://localhost:4173",
+          "https://socket-io-sooty-iota.vercel.app"
+        ],
+        methods: ["GET", "POST"],
+        credentials: true
+      }
   });
 // const corsOptions={
 //     origin: [
