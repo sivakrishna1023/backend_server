@@ -20,21 +20,43 @@ app.use(express.json());
 // app.use(notFound)
 // app.use(errorHandler)
 
-const corsOptions={
+
+const corsOptions = {
     origin: [
-        "http://localhost:5173",
-        "http://localhost:4173",
-        "https://socket-io-sooty-iota.vercel.app"
-      ],
-}
+      "http://localhost:5173",
+      "http://localhost:4173",
+      "https://socket-io-sooty-iota.vercel.app"
+    ]
+  };
+  
+  // Apply CORS middleware to Express
+  app.use(cors(corsOptions));
+  
+  const server = createServer(app);
+  
+  // Apply CORS options to socket.io
+  const io = new Server(server, {
+    cors: {
+      origin: corsOptions.origin,
+      methods: ["GET", "POST"],
+      credentials: true // Include if you need to support cookies or HTTP authentication
+    }
+  });
+// const corsOptions={
+//     origin: [
+//         "http://localhost:5173",
+//         "http://localhost:4173",
+//         "https://socket-io-sooty-iota.vercel.app"
+//       ],
+// }
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
 
-const server=createServer(app);
-const io=new Server(server,{
-    cors:{ corsOptions }
-});
+// const server=createServer(app);
+// const io=new Server(server,{
+//     cors:{ corsOptions }
+// });
 
 
 const connectedSockets = [];
