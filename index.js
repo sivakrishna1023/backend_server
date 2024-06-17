@@ -20,28 +20,20 @@ app.use(express.json());
 // app.use(notFound)
 // app.use(errorHandler)
 
-app.use(cors({
+const corsOptions={
     origin: [
-      "http://localhost:5173",
-      "http://localhost:4173",
-      "https://socket-io-sooty-iota.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-}))
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "https://socket-io-sooty-iota.vercel.app"
+      ],
+}
+
+app.use(cors(corsOptions))
 
 
 const server=createServer(app);
 const io=new Server(server,{
-    cors:{
-        origin: [
-            "http://localhost:5173",
-            "http://localhost:4173",
-            "https://socket-io-sooty-iota.vercel.app"
-          ],
-        methods:["GET","POST"],
-        credentials:true,
-    }
+    cors:{ corsOptions }
 });
 
 
