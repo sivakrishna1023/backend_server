@@ -35,37 +35,15 @@ const corsOptions = {
   
   // Create HTTP server
   const server = createServer(app);
-
-
-
-const io =new Server(server, { cors: { origin: '*' } });
-
-
   // Create Socket.IO server with CORS options
-//   const io = new Server(server, {
-//     cors: {
-//       origin: corsOptions.origin,
-//       methods: corsOptions.methods,
-//       credentials: corsOptions.credentials
-//     }
-//   });
+  const io = new Server(server, {
+    cors: {
+      origin: corsOptions.origin,
+      methods: corsOptions.methods,
+      credentials: corsOptions.credentials
+    }
+  });
 
-
-// const corsOptions={
-//     origin: [
-//         "http://localhost:5173",
-//         "http://localhost:4173",
-//         "https://socket-io-sooty-iota.vercel.app"
-//       ],
-// }
-
-// app.use(cors(corsOptions))
-
-
-// const server=createServer(app);
-// const io=new Server(server,{
-//     cors:{ corsOptions }
-// });
 
 
 const connectedSockets = [];
