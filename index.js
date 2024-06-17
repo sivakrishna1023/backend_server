@@ -20,32 +20,57 @@ app.use(express.json());
 // app.use(notFound)
 // app.use(errorHandler)
 
-
-// const corsOptions = {
-//     origin: [
-//       "http://localhost:5173",
-//       "http://localhost:4173",
-//       "https://socket-io-sooty-iota.vercel.app"
-//     ]
-//   };
+const corsOptions = {
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:4173",
+      "https://socket-io-sooty-iota.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+  };
   
-//   // Apply CORS middleware to Express
-//   app.use(cors(corsOptions));
+  // Apply CORS middleware to Express
+  app.use(cors(corsOptions));
   
+  // Create HTTP server
   const server = createServer(app);
-  
-  // Apply CORS options to socket.io
-  const io = new Server(server, {
-    cors: {
-        origin: [
-          "http://localhost:5173",
-          "http://localhost:4173",
-          "https://socket-io-sooty-iota.vercel.app"
-        ],
-        methods: ["GET", "POST"],
-        credentials: true
-      }
-  });
+//   const io = require("socket.io")(server, {
+//     handlePreflightRequest: (req, res) => {
+//         const headers = {
+//             "Access-Control-Allow-Headers": "Content-Type, Authorization",
+//             "Access-Control-Allow-Origin": 'http://localhost:5173', //or the specific origin you want to give access to,
+//             "Access-Control-Allow-Credentials": true
+//         };
+//         res.writeHead(200, headers);
+//         res.end();
+//     }
+// });
+
+
+const io =new Server(server, { cors: { origin: '*' } });
+// const io = new Server(server,{
+//     handlePreflightRequest: (req, res) => {
+//         const headers = {
+//             "Access-Control-Allow-Headers": "Content-Type, Authorization",
+//             "Access-Control-Allow-Origin": 'http://localhost:5173', //or the specific origin you want to give access to,
+//             "Access-Control-Allow-Credentials": true
+//         };
+//         res.writeHead(200, headers);
+//         res.end();
+//     }
+// });
+
+  // Create Socket.IO server with CORS options
+//   const io = new Server(server, {
+//     cors: {
+//       origin: corsOptions.origin,
+//       methods: corsOptions.methods,
+//       credentials: corsOptions.credentials
+//     }
+//   });
+
+
 // const corsOptions={
 //     origin: [
 //         "http://localhost:5173",
